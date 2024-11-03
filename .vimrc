@@ -1,1 +1,1 @@
-/Users/trist007/.vim/vimrc
+
