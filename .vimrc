@@ -13,9 +13,7 @@ let $vundle=$vimhome."/bundle/Vundle.vim"
 
 " Be iMproved
 set nocompatible
-
-" Switch buffers without saving
-:set hidden
+set paste
 
 "=====================================================
 "" Vundle settings
@@ -34,12 +32,16 @@ call vundle#begin()
     "-------------------=== Other ===-------------------------------
     Plugin 'bling/vim-airline'                  " Lean & mean status/tabline for vim
     Plugin 'vim-airline/vim-airline-themes'     " Themes for airline
-    Plugin 'Lokaltog/powerline'                 " Powerline fonts plugin
+    " Plugin 'Lokaltog/powerline'                "Powerline fonts plugin
+    Plugin 'itchyny/lightline.vim'              " Powerline alternative
     Plugin 'fisadev/FixedTaskList.vim'          " Pending tasks list
     Plugin 'rosenfeld/conque-term'              " Consoles as buffers
     Plugin 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
+
+    "-------------------=== ColorSchemes ===-------------------------------
     Plugin 'flazz/vim-colorschemes'             " Colorschemes
-    Plugin 'djoshea/vim-autoread'               " Autoread
+    Plugin 'joshdick/onedark.vim'               " onedark
+    Plugin 'dracula/vim'                        " dracula
 
     "-------------------=== Snippets support ===--------------------
     Plugin 'garbas/vim-snipmate'                " Snippets manager
@@ -65,14 +67,20 @@ filetype plugin indent on
 "=====================================================
 "" General settings
 "=====================================================
-syntax enable                               " syntax highlight
+syntax on                                   " syntax highlight
 
 set t_Co=256                                " set 256 colors
-colorscheme wombat256mod                    " set color scheme
+set noshowmode                              " disable native vim mode since linghtline shows the mode
+let g:mirodark_enable_higher_contrast_mode=0
+nnoremap <Leader>m :MirodarkToggleHigherContrastMode<CR>
+let g:lightline = {
+    \ 'colorscheme': 'one',
+    \ }
+
+colorscheme mirodark                        " set color scheme
 
 set number                                  " show line numbers
 set ruler
-
 set ttyfast                                 " terminal acceleration
 
 set tabstop=4                               " 4 whitespaces for tabs visual presentation
@@ -124,28 +132,22 @@ set hlsearch	                            " highlight search results
 let g:airline_theme='badwolf'
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#formatter='unique_tail'
-let g:airline_powerline_fonts=1
+let g:airline_powerline_fonts=0
 
 "=====================================================
 "" TagBar settings
 "=====================================================
 let g:tagbar_autofocus=0
 let g:tagbar_width=42
-"autocmd BufEnter *.py :call tagbar#autoopen(0)
+autocmd BufEnter *.py :call tagbar#autoopen(0)
 
 "=====================================================
 "" NERDTree settings
 "=====================================================
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']     " Ignore files in NERDTree
-let NERDTreeWinSize=25
+let NERDTreeWinSize=40
 autocmd VimEnter * if !argc() | NERDTree | endif  " Load NERDTree only if vim is run without arguments
 nmap " :NERDTreeToggle<CR>
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
-map <F2> a<C-R>=strftime("%c")<CR><Esc>
- 
-
 
 "=====================================================
 "" SnipMate settings
