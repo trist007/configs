@@ -34,6 +34,7 @@ call vundle#begin()
     Plugin 'vim-airline/vim-airline-themes'     " Themes for airline
     " Plugin 'Lokaltog/powerline'                "Powerline fonts plugin
     Plugin 'itchyny/lightline.vim'              " Powerline alternative
+    Plugin 'mengelbrecht/lightline-bufferline'  " Lightline multiple buffers
     Plugin 'fisadev/FixedTaskList.vim'          " Pending tasks list
     Plugin 'rosenfeld/conque-term'              " Consoles as buffers
     Plugin 'tpope/vim-surround'                 " Parentheses, brackets, quotes, XML tags, and more
@@ -73,9 +74,23 @@ set t_Co=256                                " set 256 colors
 set noshowmode                              " disable native vim mode since linghtline shows the mode
 let g:mirodark_enable_higher_contrast_mode=0
 nnoremap <Leader>m :MirodarkToggleHigherContrastMode<CR>
+
 let g:lightline = {
-    \ 'colorscheme': 'one',
-    \ }
+  \ 'colorscheme': 'one',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified' ] ]
+  \ },
+  \ 'tabline': {
+  \   'left': [ ['buffers'] ],
+  \   'right': [ ['close'] ]
+  \ },
+  \ 'component_expand': {
+  \   'buffers': 'lightline#bufferline#buffers'
+  \ },
+  \ 'component_type': {
+  \   'buffers': 'tabsel'
+  \ }
+  \ }
 
 colorscheme mirodark                        " set color scheme
 
@@ -145,7 +160,7 @@ autocmd BufEnter *.py :call tagbar#autoopen(0)
 "" NERDTree settings
 "=====================================================
 let NERDTreeIgnore=['\.pyc$', '\.pyo$', '__pycache__$']     " Ignore files in NERDTree
-let NERDTreeWinSize=40
+let NERDTreeWinSize=20
 autocmd VimEnter * if !argc() | NERDTree | endif  " Load NERDTree only if vim is run without arguments
 nmap " :NERDTreeToggle<CR>
 
