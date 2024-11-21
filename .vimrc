@@ -15,6 +15,9 @@ let $vundle=$vimhome."/bundle/Vundle.vim"
 set nocompatible
 set paste
 
+" Allow switch buffers without having to save changes
+set hidden
+
 "=====================================================
 "" Vundle settings
 "=====================================================
