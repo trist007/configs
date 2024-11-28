@@ -6,6 +6,7 @@ alias ls='ls --color'
 alias vi='vim'
 alias gitlog='git log --pretty=oneline'
 alias gitlogd='git log --pretty=format:"%h%x09%an%x09%ad%x09%s"'
+alias gitbranch='git branch -av --sort=-committerdate'
 alias h='history'
 cd ~/dev/trantor
 
