@@ -5,6 +5,7 @@ export TERM=xterm-256color
 alias ls='ls --color'
 alias vi='vim'
 alias gitlog='git log --pretty=oneline'
+alias gitlogd='https://stackoverflow.com/questions/1441010/the-shortest-possible-output-from-git-log-containing-author-and-date'
 alias h='history'
 cd dev/trantor
 
