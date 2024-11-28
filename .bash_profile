@@ -7,7 +7,7 @@ alias vi='vim'
 alias gitlog='git log --pretty=oneline'
 alias gitlogd='https://stackoverflow.com/questions/1441010/the-shortest-possible-output-from-git-log-containing-author-and-date'
 alias h='history'
-cd dev/trantor
+cd ~/dev/trantor
 
 parse_git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
