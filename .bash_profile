@@ -4,8 +4,8 @@ export TERM=xterm-256color
 
 alias ls='ls --color'
 alias vi='vim'
-alias gitlog='git log --pretty=oneline'
-alias gitlogd='git log --pretty=format:"%h%x09%an%x09%ad%x09%s"'
+alias gitlog="git log --graph --abbrev-commit --decorate=no --date=format:'%Y-%m-%d %H:%I:%S' --format=format:'%C(03)%>|(26)%h%C(reset)  %C(04)%ad%C(reset)  %C(green)%<(16,trunc)%an%C(reset)  %C(bold 1)%d%C(reset) %C(bold 0)%>|(1)%s%C(reset)' --all"
+alias gitlogd='git log --pretty=oneline'
 alias gitbranch='git branch -av --sort=-committerdate'
 alias h='history'
 cd ~/dev/darkterminal
