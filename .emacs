@@ -435,7 +435,16 @@
 (setq next-line-add-newlines nil)
 (setq-default truncate-lines t)
 (setq truncate-partial-width-windows nil)
-(split-window-horizontally)
+
+(defun my-safe-horizontal-split ()
+  "Split window horizontally if no split exists."
+  (interactive)
+  (when (= (length (window-list)) 1)
+    (split-window-horizontally)))
+
+;; Replace your current split-window-horizontally call with this
+(my-safe-horizontal-split)
+;;(split-window-horizontally)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -462,21 +471,39 @@
 
 (add-to-list 'default-frame-alist '(font . "Liberation Mono-14.0"))
 (set-face-attribute 'default t :font "Liberation Mono-14.0")
-(set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
+(set-face-attribute 'font-lock-builtin-face nil :foreground "snow3")
 (set-face-attribute 'font-lock-comment-face nil :foreground "gray50")
-(set-face-attribute 'font-lock-constant-face nil :foreground "olive drab")
-(set-face-attribute 'font-lock-doc-face nil :foreground "gray50")
-(set-face-attribute 'font-lock-function-name-face nil :foreground "burlywood3")
-(set-face-attribute 'font-lock-keyword-face nil :foreground "DarkGoldenrod3")
-(set-face-attribute 'font-lock-string-face nil :foreground "olive drab")
-(set-face-attribute 'font-lock-type-face nil :foreground "burlywood3")
-(set-face-attribute 'font-lock-variable-name-face nil :foreground "burlywood3")
+(set-face-attribute 'font-lock-constant-face nil :foreground "snow3")
+(set-face-attribute 'font-lock-doc-face nil :foreground "snow3")
+(set-face-attribute 'font-lock-function-name-face nil :foreground "green1")
+(set-face-attribute 'font-lock-keyword-face nil :foreground "yellow")
+(set-face-attribute 'font-lock-string-face nil :foreground "dodgerblue1")
+(set-face-attribute 'font-lock-type-face nil :foreground "magenta")
+(set-face-attribute 'font-lock-variable-name-face nil :foreground "snow3")
+;;(set-face-attribute 'font-lock-builtin-face nil :foreground "#DAB98F")
+
+;; Now set up the font-lock keywords with our custom face
+(font-lock-add-keywords
+ 'c++-mode
+ '(("^[ \t]*#[ \t]*\\(include\\)[ \t]*[<\"]\\([^>\"]*\\)[>\"]"
+    (1 font-lock-preprocessor-face t)   ; Colors the "include" keyword
+    (2 'my-include-filename-face t))))  ; Colors the filename part
+
+;; First, let's create a custom face specifically for include filenames
+(defface my-include-filename-face
+  '((t :foreground "darkorchid"))
+  "Face for filenames in #include statements")
+
+
+;; Set the color for the #include directive itself
+(set-face-attribute 'font-lock-preprocessor-face nil :foreground "darkorchid")
 
 (defun post-load-stuff ()
   (interactive)
   (menu-bar-mode -1)
   (maximize-frame)
-  (set-foreground-color "burlywood3")
+;;  (set-foreground-color "burlywood3")
+  (set-foreground-color "snow3")
   (set-background-color "#161616")
   (set-cursor-color "#40FF40")
 )
