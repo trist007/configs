@@ -41,7 +41,7 @@
   (setq aquamacs-save-options-on-quit 0)
   (setq special-display-regexps nil)
   (setq special-display-buffer-names nil)
-  (define-key function-key-map [return] [13])
+
   (setq mac-command-key-is-meta t)
   (scroll-bar-mode nil)
   (setq mac-pass-command-to-system nil)
@@ -205,7 +205,7 @@
   (c-toggle-auto-hungry-state -1)
 
   ; Newline indents, semi-colon doesn't
-  (define-key c++-mode-map "\C-m" 'newline-and-indent)
+
   (setq c-hanging-semi&comma-criteria '((lambda () 'stop)))
 
   ; Handle super-tabbify (TAB completes, shift-TAB actually tabs)
@@ -286,8 +286,6 @@
     (find-file-other-window buffer-file-name)
     (casey-find-corresponding-file)
     (other-window -1))
-  (define-key c++-mode-map [f12] 'casey-find-corresponding-file)
-  (define-key c++-mode-map [M-f12] 'casey-find-corresponding-file-other-window)
 
   ; devenv.com error parsing
   (add-to-list 'compilation-error-regexp-alist 'casey-devenv)
@@ -302,7 +300,6 @@
   (save-excursion
     (replace-string FromString ToString)
   ))
-(define-key global-map [f8] 'casey-replace-string)
 
 (add-hook 'c-mode-common-hook 'casey-big-fun-c-hook)
 
@@ -322,10 +319,8 @@
         indent-tabs-mode nil)
 
   ; Newline indents, semi-colon doesn't
-  (define-key text-mode-map "\C-m" 'newline-and-indent)
 
   ; Prevent overriding of alt-s
-  (define-key text-mode-map "\es" 'casey-save-buffer)
   )
 (add-hook 'text-mode-hook 'casey-big-fun-text-hook)
 
@@ -340,9 +335,6 @@
      (interactive)
      (when casey-aquamacs (aquamacs-toggle-full-frame))
      (when casey-win32 (w32-send-sys-command 61488)))
-
-(define-key global-map "\ep" 'maximize-frame)
-(define-key global-map "\ew" 'other-window)
 
 ; Navigation
 (defun previous-blank-line ()
@@ -359,16 +351,6 @@
   (forward-line -1)
 )
 
-(define-key global-map [C-right] 'forward-word)
-(define-key global-map [C-left] 'backward-word)
-(define-key global-map [C-up] 'previous-blank-line)
-(define-key global-map [C-down] 'next-blank-line)
-(define-key global-map [home] 'beginning-of-line)
-(define-key global-map [end] 'end-of-line)
-(define-key global-map [pgup] 'forward-page)
-(define-key global-map [pgdown] 'backward-page)
-(define-key global-map [C-next] 'scroll-other-window)
-(define-key global-map [C-prior] 'scroll-other-window-down)
 
 ; ALT-alternatives
 (defadvice set-mark-command (after no-bloody-t-m-m activate)
