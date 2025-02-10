@@ -481,3 +481,5 @@
   (set-cursor-color "#40FF40")
 )
 (add-hook 'window-setup-hook 'post-load-stuff t)
+(global-unset-key (kbd "M-w"))
+(global-set-key (kbd "M-w") 'kill-ring-save)
