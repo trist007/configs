@@ -4,6 +4,7 @@
 !.emacs
 !.tmux.conf
 !.bash_profile
+!mappings.lua
 !.gdbinit
 !colors
 !setup.sh
