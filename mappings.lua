@@ -188,4 +188,12 @@ vim.opt.fileformats = "dos,unix"
 vim.opt.listchars = { eol = '↵', tab = '→ ', trail = '·', extends = '…', precedes = '…' }
 vim.opt.list = false  -- Set to true if you want to see special characters
 
+-- Custom highlight for C TODO keywords
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "c", "cpp"},
+    callback = function()
+        vim.api.nvim_set_hl(0, "cTodo", { fg = "#FF0000", bold = true })
+    end
+})
+
 return M
