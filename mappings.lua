@@ -189,10 +189,19 @@ vim.opt.listchars = { eol = '↵', tab = '→ ', trail = '·', extends = '…', 
 vim.opt.list = false  -- Set to true if you want to see special characters
 
 -- Custom highlight for C TODO keywords
+-- I had to update the c.vim file in C:\Program Files\Neovim\share\nvim\runtime\syntax\c.vim
+-- to include a cNote keyword so that I can then change the color in this file
 vim.api.nvim_create_autocmd("FileType", {
     pattern = { "c", "cpp"},
     callback = function()
         vim.api.nvim_set_hl(0, "cTodo", { fg = "#FF0000", bold = true })
+        vim.api.nvim_set_hl(0, "cNote", { fg = "#008000", bold = true })
+    end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "c", "cpp"},
+    callback = function()
     end
 })
 
