@@ -184,19 +184,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- Set default file format to dos for Windows
 vim.opt.fileformats = "dos,unix"
 
--- Add these after your existing indent options
-vim.opt.cindent = true  -- Enable C-style indentation
-vim.opt.cinoptions = "{1s,}1s,^1s,L1"  -- Control brace placement
-
--- Or if you want it only for C/C++ files
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "c", "cpp" },
-    callback = function()
-        vim.opt_local.cindent = true
-        vim.opt_local.cinoptions = "{1s,}1s,^1s,L1"
-    end
-})
-
 -- Configure how special characters are displayed
 vim.opt.listchars = { eol = '↵', tab = '→ ', trail = '·', extends = '…', precedes = '…' }
 vim.opt.list = false  -- Set to true if you want to see special characters
@@ -208,12 +195,6 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_set_hl(0, "cTodo", { fg = "#FF0000", bold = true })
         vim.api.nvim_set_hl(0, "cNote", { fg = "#008000", bold = true })
         vim.api.nvim_set_hl(0, "cImportant", { fg = "#FFFF00", bold = true })
-    end
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "c", "cpp"},
-    callback = function()
     end
 })
 
