@@ -187,6 +187,11 @@ vim.opt.fileformats = "dos,unix"
 -- Configure how special characters are displayed
 vim.opt.listchars = { eol = '↵', tab = '→ ', trail = '·', extends = '…', precedes = '…' }
 vim.opt.list = false  -- Set to true if you want to see special characters
+vim.o.shiftwidth = 2
+vim.o.tabstop = 2
+vim.o.softtabstop = 2
+vim.o.numberwidth = 2
+-- vim.opt.cinoptions = vim.opt.cinoptions + "e\n"  -- Place opening braces on a new line
 
 -- Custom highlight for C TODO keywords
 vim.api.nvim_create_autocmd("FileType", {
@@ -196,6 +201,31 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.api.nvim_set_hl(0, "cNote", { fg = "#008000", bold = true })
         vim.api.nvim_set_hl(0, "cImportant", { fg = "#FFFF00", bold = true })
     end
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = {"c", "cpp"},
+  callback = function()
+    -- Define a custom indent function
+    vim.cmd([[
+      function! AllmanElseIndent()
+        let line = getline('.')
+        if line =~ '^\s*else\>'
+          let prev_line_num = prevnonblank(line('.') - 1)
+          let prev_line = getline(prev_line_num)
+          if prev_line =~ '}\s*$'
+            normal! kA
+            normal! o
+            normal! o
+            normal! kelse
+          endif
+        endif
+      endfunction
+      
+      " Apply this function when typing 'else'
+      inoremap <buffer> else <C-o>:call AllmanElseIndent()<CR>else
+    ]])
+  end
 })
 
 return M
