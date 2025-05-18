@@ -5,6 +5,7 @@
 !.tmux.conf
 !.bash_profile
 !mappings.lua
+!options.lua
 !.gdbinit
 !colors
 !setup.sh
