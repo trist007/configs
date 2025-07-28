@@ -1,0 +1,23 @@
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = git@github.com:trist007/HandmadeHero.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
+[diff "color"]
+  commit = blue
+[color "decorate"]
+  tag = magenta
+[core]
+  autocrlf = true
+[user]
+  name = trist007
+  email = trist007@darkterminal.net
+  
