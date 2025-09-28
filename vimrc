@@ -204,15 +204,17 @@ function! CompilationMode()
     copen 20
     
     " Jump back to the source window
-    wincmd p
+    " wincmd p
 endfunction
 
 augroup msvc_bindings
     autocmd!
-    autocmd FileType c,cpp nnoremap <buffer> <F5> :call CompilationMode()<CR>
+    "autocmd FileType c,cpp nnoremap <buffer> <F5> :call CompilationMode()<CR>
+    autocmd FileType c,cpp nnoremap <buffer> <M-m> :call CompilationMode()<CR>
 augroup END
 
 nnoremap <F12> :!start c:\raddbg\raddbg.exe<CR><CR>
+nnoremap <M-,> :cclose<CR>
 
 " Map leader+lg to open lazygit in a split terminal
 nnoremap <leader>lg :FloatermNew lazygit<CR>
