@@ -2,6 +2,7 @@
 !.gitignore
 !.vimrc
 !vimrc
+!_vimrc
 !.emacs
 !.tmux.conf
 !.bash_profile
