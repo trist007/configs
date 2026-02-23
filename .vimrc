@@ -58,6 +58,10 @@ Plugin 'Rykka/riv.vim'                      " ReStructuredText plugin
 " Plugin 'klen/python-mode'                   " Python mode (docs, refactor, lints...)
 Plugin 'scrooloose/syntastic'               " Syntax checking plugin for Vim
 
+"-------------------=== GLSL  ===-----------------------------
+Plugin 'tikhomirov/vim-glsl'
+""Plugin 'patriciogonzalezvivo/vim-glslViewer' requires glslViewer but will show shader in RT
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
@@ -132,6 +136,8 @@ set clipboard=unnamed                       " use system clipboard
 
 set exrc                                    " enable usage of additional .vimrc files from working directory
 set secure                                  " prohibit .vimrc files to execute shell, create files, etc...
+
+set fileformats=dos,unix
 
 " Additional mappings for Esc (useful for MacBook with touch bar)
 inoremap jj <Esc>
@@ -330,3 +336,6 @@ set errorformat=%f(%l\\,%c):\ %t%*[^:]:\ %m,%f(%l)\ :\ %t%*[^:]:\ %m
 "nmap <leader>g :YcmCompleter GoTo<CR>
 "nmap <leader>d :YcmCompleter GoToDefinition<CR>
 set paste
+
+"" GLSL
+autocmd BufNewFile,BufRead *.fs set filetype=glsl
