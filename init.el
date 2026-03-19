@@ -31,6 +31,7 @@
 
 (setq compilation-ask-about-save nil)
 (setq compilation-save-buffers-predicate 'always)
+(setq-default buffer-file-coding-system 'utf-8-dos)
 
 ; Determine the underlying operating system
 (setq casey-aquamacs (featurep 'aquamacs))
