@@ -18,6 +18,20 @@
 (setq undo-limit 20000000)
 (setq undo-strong-limit 40000000)
 
+; Quick Keys
+(global-set-key (kbd "<f2>")
+		(lambda ()
+		  (interactive)
+		  (async-shell-command "C:/dev/arwin/arwin/code/run.bat")))
+
+(global-set-key (kbd "<f3>")
+		(lambda ()
+		  (interactive)
+		  (async-shell-command "C:/dev/arwin/arwin/code/debug.bat")))
+
+(setq compilation-ask-about-save nil)
+(setq compilation-save-buffers-predicate 'always)
+
 ; Determine the underlying operating system
 (setq casey-aquamacs (featurep 'aquamacs))
 (setq casey-linux (featurep 'x))
@@ -74,7 +88,7 @@
   (interactive)
   (shell-command "raddbg ..\..\build\plata.exe &"))
 
-(global-set-key (kbd "F3") 'run-raddbg)
+(global-set-key (kbd "<F3>") 'run-raddbg)
 
 (defun casey-ediff-setup-windows (buffer-A buffer-B buffer-C control-buffer)
   (ediff-setup-windows-plain buffer-A buffer-B buffer-C control-buffer)
